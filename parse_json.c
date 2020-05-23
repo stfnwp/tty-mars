@@ -6,12 +6,10 @@ json_object *parse_json(char *json_str)
 {
 	json_tokener *tok = json_tokener_new();
 	json_object *jobj = NULL;
-	int stringlen = 0;
 	enum json_tokener_error jerr;
 	do
 	{
-		stringlen = strlen(json_str);
-		jobj = json_tokener_parse_ex(tok, json_str, stringlen);
+		jobj = json_tokener_parse_ex(tok, json_str, strlen(json_str));
 	} while ((jerr = json_tokener_get_error(tok)) == json_tokener_continue);
 	if (jerr != json_tokener_success)
 	{
