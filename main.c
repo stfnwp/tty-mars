@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 	sprintf(url, "https://api.nasa.gov/insight_weather/?api_key=%s&feedtype=json&ver=1.0", api_key);
 	char *response = get(url);
 
-	// json_object *input_obj = json_object_from_file("input.json");
+	//json_object *input_obj = json_object_from_file("input.json");
 	json_object *input_obj = parse_json(response);
 	json_object *sol_keys_obj;
 	json_object_object_get_ex(input_obj, "sol_keys", &sol_keys_obj);
@@ -39,12 +39,10 @@ int main(int argc, char *argv[])
 	json_pointer_getf(input_obj, &temp_obj, "/%d/HWS/av", latest_sol);
 	double temperature = json_object_get_double(temp_obj);
 
-	printf("sol: %d", latest_sol);
-	printf("temp: %.2lf", temperature);
-
-	//	char output_str[10];
-	//	sprintf(output_str, "sol%s", sol);
-	//	print_matrix(output_str);
+	char output_str[20];
+	sprintf(output_str, "%d %.0lfDf", latest_sol, temperature);
+	print_matrix("sol temp");
+	print_matrix(output_str);
 
 	getch();
 	endwin();
