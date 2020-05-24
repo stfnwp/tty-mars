@@ -1,4 +1,4 @@
-SRC = get.c parse_json.c print_matrix.c main.c
+SRC = get.c get_weather.c print_matrix.c main.c
 CC ?= gcc
 BIN ?= tty-mars
 
