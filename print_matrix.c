@@ -6,6 +6,34 @@
 #define WIDTH 7
 #define HEIGHT 5
 
+bool *get_matrix(char c);
+
+void print_matrix_char(char c, int x_offset, int y_offset)
+{
+  bool *matrix = get_matrix(c);
+  for (int y = 0; y < HEIGHT; y++)
+  {
+    for (int x = 0; x < WIDTH; x++)
+    {
+      wbkgdset(stdscr, COLOR_PAIR(matrix[x + (y * WIDTH)] + 2));
+      mvwaddch(stdscr, y + y_offset, x + x_offset, ' ');
+    }
+  }
+  wrefresh(stdscr);
+}
+
+void print_matrix(char *s)
+{
+  int x_offset = 1;
+  static int y_offset = 1;
+  for (int i = 0; i < strlen(s); i++)
+  {
+    print_matrix_char(s[i], x_offset, y_offset);
+    x_offset += 8;
+  }
+  y_offset += 6;
+}
+
 bool *get_matrix(char c)
 {
   static bool num[WIDTH * HEIGHT];
@@ -78,30 +106,4 @@ bool *get_matrix(char c)
     printf("unknown character %c", c);
     exit(1);
   }
-}
-
-void print_matrix_char(char c, int x_offset, int y_offset)
-{
-  bool *matrix = get_matrix(c);
-  for (int y = 0; y < HEIGHT; y++)
-  {
-    for (int x = 0; x < WIDTH; x++)
-    {
-      wbkgdset(stdscr, COLOR_PAIR(matrix[x + (y * WIDTH)] + 2));
-      mvwaddch(stdscr, y + y_offset, x + x_offset, ' ');
-    }
-  }
-  wrefresh(stdscr);
-}
-
-void print_matrix(char *s)
-{
-  int x_offset = 1;
-  static int y_offset = 1;
-  for (int i = 0; i < strlen(s); i++)
-  {
-    print_matrix_char(s[i], x_offset, y_offset);
-    x_offset += 8;
-  }
-  y_offset += 6;
 }
