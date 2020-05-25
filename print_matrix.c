@@ -1,5 +1,4 @@
-#include <stdlib.h>
-#include <string.h>
+#include <glib.h>
 #include <ncurses.h>
 #include "print_matrix.h"
 

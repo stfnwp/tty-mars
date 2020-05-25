@@ -3,6 +3,7 @@ retrieve mars sol and temperature via http.
 
 ## dependencies
 - pkg-config (build only)
+- glib
 - curl
 - json-c
 - ncurses

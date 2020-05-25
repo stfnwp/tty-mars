@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <glib.h>
 #include <arraylist.h>
 #include <json_pointer.h>
 #include <json_tokener.h>
@@ -19,18 +17,19 @@ json_object *parse_json(char *json_str)
 	} while ((jerr = json_tokener_get_error(tok)) == json_tokener_continue);
 	if (jerr != json_tokener_success)
 	{
-		fprintf(stderr, "Error: %s\n", json_tokener_error_desc(jerr));
+		g_printerr("Error: %s\n", json_tokener_error_desc(jerr));
 	}
 	return jobj;
 }
 
-struct WeatherData get_weather() {
+struct WeatherData get_weather()
+{
 	struct WeatherData wd;
 
 	char *api_key = getenv("API_KEY") != NULL ? getenv("API_KEY") : "DEMO_KEY";
-	char url[200];
-	sprintf(url, "https://api.nasa.gov/insight_weather/?api_key=%s&feedtype=json&ver=1.0", api_key);
-	char *response = get(url);
+	GString *url = g_string_new("");
+	g_string_printf(url, "https://api.nasa.gov/insight_weather/?api_key=%s&feedtype=json&ver=1.0", api_key);
+	char *response = get(url->str);
 
 	//json_object *input_obj = json_object_from_file("input.json");
 	json_object *input_obj = parse_json(response);

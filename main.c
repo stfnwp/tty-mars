@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include <glib.h>
 #include <ncurses.h>
 #include "get_weather.h"
 #include "print_matrix.h"
@@ -20,11 +20,14 @@ int main(int argc, char *argv[])
 
 	struct WeatherData wd = get_weather();
 
-	char output_str[20];
-	sprintf(output_str, "%d %.0lfDf", wd.sol, wd.temperature);
+	GString *output_str = g_string_new("");
+	g_string_printf(output_str, "%d %.0lfDf", wd.sol, wd.temperature);
+
 	print_matrix("sol temp");
-	print_matrix(output_str);
-	
+	print_matrix(output_str->str);
+
+	g_string_free(output_str, TRUE);
+
 	getch();
 	endwin();
 }

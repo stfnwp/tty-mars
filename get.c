@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include <string.h>
 #include <curl/curl.h>
 #include "get.h"
 
@@ -54,8 +52,7 @@ char *get(char *url)
   res = curl_easy_perform(curl);
   if (res != CURLE_OK)
   {
-    fprintf(stderr, "curl_easy_perform() failed: %s\n",
-            curl_easy_strerror(res));
+    g_printerr("curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
     exit(-1);
   }
   else
