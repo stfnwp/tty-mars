@@ -5,16 +5,16 @@
 #define WIDTH 7
 #define HEIGHT 5
 
-bool *get_matrix(char c);
+int *get_matrix(char c);
 
 void print_matrix_char(char c, int x_offset, int y_offset)
 {
-  bool *matrix = get_matrix(c);
+  int *matrix = get_matrix(c);
   for (int y = 0; y < HEIGHT; y++)
   {
     for (int x = 0; x < WIDTH; x++)
     {
-      wbkgdset(stdscr, COLOR_PAIR(matrix[x + (y * WIDTH)] + 2));
+      wbkgdset(stdscr, COLOR_PAIR(matrix[x + (y * WIDTH)]));
       mvwaddch(stdscr, y + y_offset, x + x_offset, ' ');
     }
   }
@@ -33,9 +33,9 @@ void print_matrix(char *s)
   y_offset += 6;
 }
 
-bool *get_matrix(char c)
+int *get_matrix(char c)
 {
-  static bool num[WIDTH * HEIGHT];
+  static int num[WIDTH * HEIGHT];
   switch (c)
   {
   case '-':
@@ -51,25 +51,25 @@ bool *get_matrix(char c)
     num[0] = 1, num[1] = 1, num[2] = 1, num[3] = 1, num[4] = 1, num[5] = 1, num[6] = 1, num[7] = 1, num[8] = 1, num[9] = 0, num[10] = 0, num[11] = 0, num[12] = 0, num[13] = 0, num[14] = 1, num[15] = 1, num[16] = 1, num[17] = 1, num[18] = 1, num[19] = 0, num[20] = 0, num[21] = 1, num[22] = 1, num[23] = 0, num[24] = 0, num[25] = 0, num[26] = 0, num[27] = 0, num[28] = 1, num[29] = 1, num[30] = 0, num[31] = 0, num[32] = 0, num[33] = 0, num[34] = 0;
     return num;
   case 's':
-    num[0] = 0, num[1] = 0, num[2] = 1, num[3] = 1, num[4] = 1, num[5] = 1, num[6] = 1, num[7] = 0, num[8] = 0, num[9] = 1, num[10] = 1, num[11] = 1, num[12] = 0, num[13] = 0, num[14] = 0, num[15] = 0, num[16] = 1, num[17] = 1, num[18] = 1, num[19] = 0, num[20] = 0, num[21] = 0, num[22] = 0, num[23] = 1, num[24] = 1, num[25] = 1, num[26] = 0, num[27] = 0, num[28] = 1, num[29] = 1, num[30] = 1, num[31] = 1, num[32] = 1, num[33] = 0, num[34] = 0;
+    num[0] = 0, num[1] = 0, num[2] = 2, num[3] = 2, num[4] = 2, num[5] = 2, num[6] = 2, num[7] = 0, num[8] = 0, num[9] = 2, num[10] = 2, num[11] = 2, num[12] = 0, num[13] = 0, num[14] = 0, num[15] = 0, num[16] = 2, num[17] = 2, num[18] = 2, num[19] = 0, num[20] = 0, num[21] = 0, num[22] = 0, num[23] = 2, num[24] = 2, num[25] = 2, num[26] = 0, num[27] = 0, num[28] = 2, num[29] = 2, num[30] = 2, num[31] = 2, num[32] = 2, num[33] = 0, num[34] = 0;
     return num;
   case 'o':
-    num[0] = 1, num[1] = 1, num[2] = 1, num[3] = 1, num[4] = 1, num[5] = 1, num[6] = 1, num[7] = 1, num[8] = 1, num[9] = 0, num[10] = 0, num[11] = 0, num[12] = 1, num[13] = 1, num[14] = 1, num[15] = 1, num[16] = 0, num[17] = 0, num[18] = 0, num[19] = 1, num[20] = 1, num[21] = 1, num[22] = 1, num[23] = 0, num[24] = 0, num[25] = 0, num[26] = 1, num[27] = 1, num[28] = 1, num[29] = 1, num[30] = 1, num[31] = 1, num[32] = 1, num[33] = 1, num[34] = 1;
+    num[0] = 2, num[1] = 2, num[2] = 2, num[3] = 2, num[4] = 2, num[5] = 2, num[6] = 2, num[7] = 2, num[8] = 2, num[9] = 0, num[10] = 0, num[11] = 0, num[12] = 2, num[13] = 2, num[14] = 2, num[15] = 2, num[16] = 0, num[17] = 0, num[18] = 0, num[19] = 2, num[20] = 2, num[21] = 2, num[22] = 2, num[23] = 0, num[24] = 0, num[25] = 0, num[26] = 2, num[27] = 2, num[28] = 2, num[29] = 2, num[30] = 2, num[31] = 2, num[32] = 2, num[33] = 2, num[34] = 2;
     return num;
   case 'l':
-    num[0] = 1, num[1] = 1, num[2] = 0, num[3] = 0, num[4] = 0, num[5] = 0, num[6] = 0, num[7] = 1, num[8] = 1, num[9] = 0, num[10] = 0, num[11] = 0, num[12] = 0, num[13] = 0, num[14] = 1, num[15] = 1, num[16] = 0, num[17] = 0, num[18] = 0, num[19] = 0, num[20] = 0, num[21] = 1, num[22] = 1, num[23] = 0, num[24] = 0, num[25] = 0, num[26] = 0, num[27] = 0, num[28] = 1, num[29] = 1, num[30] = 1, num[31] = 1, num[32] = 1, num[33] = 1, num[34] = 1;
+    num[0] = 2, num[1] = 2, num[2] = 0, num[3] = 0, num[4] = 0, num[5] = 0, num[6] = 0, num[7] = 2, num[8] = 2, num[9] = 0, num[10] = 0, num[11] = 0, num[12] = 0, num[13] = 0, num[14] = 2, num[15] = 2, num[16] = 0, num[17] = 0, num[18] = 0, num[19] = 0, num[20] = 0, num[21] = 2, num[22] = 2, num[23] = 0, num[24] = 0, num[25] = 0, num[26] = 0, num[27] = 0, num[28] = 2, num[29] = 2, num[30] = 2, num[31] = 2, num[32] = 2, num[33] = 2, num[34] = 2;
     return num;
   case 't':
-    num[0] = 1, num[1] = 1, num[2] = 1, num[3] = 1, num[4] = 1, num[5] = 1, num[6] = 1, num[7] = 0, num[8] = 0, num[9] = 1, num[10] = 1, num[11] = 1, num[12] = 0, num[13] = 0, num[14] = 0, num[15] = 0, num[16] = 1, num[17] = 1, num[18] = 1, num[19] = 0, num[20] = 0, num[21] = 0, num[22] = 0, num[23] = 1, num[24] = 1, num[25] = 1, num[26] = 0, num[27] = 0, num[28] = 0, num[29] = 0, num[30] = 1, num[31] = 1, num[32] = 1, num[33] = 0, num[34] = 0;
+    num[0] = 2, num[1] = 2, num[2] = 2, num[3] = 2, num[4] = 2, num[5] = 2, num[6] = 2, num[7] = 0, num[8] = 0, num[9] = 2, num[10] = 2, num[11] = 2, num[12] = 0, num[13] = 0, num[14] = 0, num[15] = 0, num[16] = 2, num[17] = 2, num[18] = 2, num[19] = 0, num[20] = 0, num[21] = 0, num[22] = 0, num[23] = 2, num[24] = 2, num[25] = 2, num[26] = 0, num[27] = 0, num[28] = 0, num[29] = 0, num[30] = 2, num[31] = 2, num[32] = 2, num[33] = 0, num[34] = 0;
     return num;
   case 'e':
-    num[0] = 1, num[1] = 1, num[2] = 1, num[3] = 1, num[4] = 1, num[5] = 1, num[6] = 1, num[7] = 1, num[8] = 1, num[9] = 0, num[10] = 0, num[11] = 0, num[12] = 0, num[13] = 0, num[14] = 1, num[15] = 1, num[16] = 1, num[17] = 1, num[18] = 1, num[19] = 0, num[20] = 0, num[21] = 1, num[22] = 1, num[23] = 0, num[24] = 0, num[25] = 0, num[26] = 0, num[27] = 0, num[28] = 1, num[29] = 1, num[30] = 1, num[31] = 1, num[32] = 1, num[33] = 1, num[34] = 1;
+    num[0] = 2, num[1] = 2, num[2] = 2, num[3] = 2, num[4] = 2, num[5] = 2, num[6] = 2, num[7] = 2, num[8] = 2, num[9] = 0, num[10] = 0, num[11] = 0, num[12] = 0, num[13] = 0, num[14] = 2, num[15] = 2, num[16] = 2, num[17] = 2, num[18] = 2, num[19] = 0, num[20] = 0, num[21] = 2, num[22] = 2, num[23] = 0, num[24] = 0, num[25] = 0, num[26] = 0, num[27] = 0, num[28] = 2, num[29] = 2, num[30] = 2, num[31] = 2, num[32] = 2, num[33] = 2, num[34] = 2;
     return num;
   case 'm':
-    num[0] = 1, num[1] = 1, num[2] = 1, num[3] = 1, num[4] = 1, num[5] = 1, num[6] = 1, num[7] = 1, num[8] = 1, num[9] = 0, num[10] = 1, num[11] = 0, num[12] = 1, num[13] = 1, num[14] = 1, num[15] = 1, num[16] = 0, num[17] = 1, num[18] = 0, num[19] = 1, num[20] = 1, num[21] = 1, num[22] = 1, num[23] = 0, num[24] = 0, num[25] = 0, num[26] = 1, num[27] = 1, num[28] = 1, num[29] = 1, num[30] = 0, num[31] = 0, num[32] = 0, num[33] = 1, num[34] = 1;
+    num[0] = 2, num[1] = 2, num[2] = 2, num[3] = 2, num[4] = 2, num[5] = 2, num[6] = 2, num[7] = 2, num[8] = 2, num[9] = 0, num[10] = 2, num[11] = 0, num[12] = 2, num[13] = 2, num[14] = 2, num[15] = 2, num[16] = 0, num[17] = 2, num[18] = 0, num[19] = 2, num[20] = 2, num[21] = 2, num[22] = 2, num[23] = 0, num[24] = 0, num[25] = 0, num[26] = 2, num[27] = 2, num[28] = 2, num[29] = 2, num[30] = 0, num[31] = 0, num[32] = 0, num[33] = 2, num[34] = 2;
     return num;
   case 'p':
-    num[0] = 1, num[1] = 1, num[2] = 1, num[3] = 1, num[4] = 1, num[5] = 1, num[6] = 1, num[7] = 1, num[8] = 1, num[9] = 0, num[10] = 0, num[11] = 0, num[12] = 1, num[13] = 1, num[14] = 1, num[15] = 1, num[16] = 1, num[17] = 1, num[18] = 1, num[19] = 1, num[20] = 1, num[21] = 1, num[22] = 1, num[23] = 0, num[24] = 0, num[25] = 0, num[26] = 0, num[27] = 0, num[28] = 1, num[29] = 1, num[30] = 0, num[31] = 0, num[32] = 0, num[33] = 0, num[34] = 0;
+    num[0] = 2, num[1] = 2, num[2] = 2, num[3] = 2, num[4] = 2, num[5] = 2, num[6] = 2, num[7] = 2, num[8] = 2, num[9] = 0, num[10] = 0, num[11] = 0, num[12] = 2, num[13] = 2, num[14] = 2, num[15] = 2, num[16] = 2, num[17] = 2, num[18] = 2, num[19] = 2, num[20] = 2, num[21] = 2, num[22] = 2, num[23] = 0, num[24] = 0, num[25] = 0, num[26] = 0, num[27] = 0, num[28] = 2, num[29] = 2, num[30] = 0, num[31] = 0, num[32] = 0, num[33] = 0, num[34] = 0;
     return num;
   case '0':
     num[0] = 1, num[1] = 1, num[2] = 1, num[3] = 1, num[4] = 1, num[5] = 1, num[6] = 1, num[7] = 1, num[8] = 1, num[9] = 0, num[10] = 0, num[11] = 0, num[12] = 1, num[13] = 1, num[14] = 1, num[15] = 1, num[16] = 0, num[17] = 0, num[18] = 0, num[19] = 1, num[20] = 1, num[21] = 1, num[22] = 1, num[23] = 0, num[24] = 0, num[25] = 0, num[26] = 1, num[27] = 1, num[28] = 1, num[29] = 1, num[30] = 1, num[31] = 1, num[32] = 1, num[33] = 1, num[34] = 1;
