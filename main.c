@@ -16,8 +16,8 @@ int main(int argc, char *argv[])
 	}
 	start_color();
 	init_pair(0, COLOR_BLACK, COLOR_BLACK);
-	init_pair(1, COLOR_GREEN, COLOR_GREEN);
-	init_pair(2, COLOR_RED, COLOR_RED);
+	init_pair(1, COLOR_MAGENTA, COLOR_MAGENTA);
+	init_pair(2, COLOR_BLUE, COLOR_BLUE);
 
 	struct WeatherData wd = get_weather();
 
