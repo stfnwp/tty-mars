@@ -6,6 +6,7 @@
 int main(int argc, char *argv[])
 {
 	initscr();
+	use_default_colors();
 	curs_set(false);
 	if (has_colors() == FALSE)
 	{
